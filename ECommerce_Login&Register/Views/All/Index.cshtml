@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ECommerce_Login_Register.Models.All>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cat.Tur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AllName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cat.Tur)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AllName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AllId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AllId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AllId })
+        </td>
+    </tr>
+}
+
+</table>

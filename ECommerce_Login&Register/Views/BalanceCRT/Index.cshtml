@@ -1,0 +1,197 @@
+﻿@model IEnumerable<ECommerce_Login_Register.Models.Balance>
+@{
+
+    ViewBag.Title = "Index";
+    if (Session["id"] != null)
+    {
+
+        Layout = "~/Views/Shared/Admin_Layout.cshtml";
+        <main id="main" class="main">
+            <div class="pagetitle">
+                <h1>Form Layouts</h1>
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/Home/Index">Home</a></li>
+                        <li class="breadcrumb-item">Forms</li>
+                        <li class="breadcrumb-item active">Layouts</li>
+                    </ol>
+                </nav>
+            </div>
+            <section class="section">
+                <div class="row">
+                    <div class="col-lg-6">
+
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Balance Index</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <p>
+
+                <a class="ri-add-fill btn btn-success" href="/BalanceCRT/Create"></a>
+            </p>
+            <table class="table table-hover datatable">
+                <tr>
+                    <th>
+                        <p>
+                            Foto:
+                        </p>
+                    </th>
+
+                    <th>
+                        <p>
+                            User id
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            User Name
+                        </p>
+                    </th>
+
+                    <th>
+                        <p>
+                            Mail:
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            Balance id
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            Balance:
+                        </p>
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <img src="@item.Us.Foto" alt="Alternate Text" style="height:100px; width:100px; border-radius:5px;" />
+                        </td>
+
+
+                        <td>
+                            @item.UserId
+                        </td>
+                        <td>
+                            @item.Us.UserName
+                        </td>
+
+                        <td>
+                            @item.Us.UserMail
+                        </td>
+                        <td>
+                            @item.Balance_Id
+                        </td>
+                        <td>
+                            @item.Butce
+                        </td>
+
+                        <td>
+                            <a class="bi bi-arrow-up btn btn btn-success" href="/BalanceCRT/Inc/@item.Balance_Id"></a>
+                            <a class="bi bi-arrow-down btn btn btn-danger" href="/BalanceCRT/Dec/@item.Balance_Id"></a>
+                            <a class="ri-delete-bin-2-line btn btn btn-secondary" href="/BalanceCRT/Delete/@item.Balance_Id"></a>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </main>
+    }
+    else
+    {
+        Layout = "~/Views/Shared/User_Layout.cshtml";
+        <main id="main" class="main">
+            <div class="pagetitle">
+                <h1>Form Layouts</h1>
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/Home/Index">Home</a></li>
+                        <li class="breadcrumb-item">Forms</li>
+                        <li class="breadcrumb-item active">Layouts</li>
+                    </ol>
+                </nav>
+            </div>
+            <section class="section">
+                <div class="row">
+                    <div class="col-lg-6">
+
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Bütçe Arttır/Azalt</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <p>
+                <a class="ri-add-fill btn btn-success" href="/BalanceCRT/Create"></a>
+            </p>
+            <table class="table table-hover">
+                <tr>
+                    <th>
+                        <p>
+                            Foto:
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            İsim:
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            Mail:
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            Balance:
+                        </p>
+                    </th>
+                    <th></th>
+                </tr>
+
+                @{
+                    string loggedInUserName = Session["UserMails"]?.ToString(); // Kullanıcının giriş yaptığı kullanıcı adı ya da benzeri bir bilgi
+                    var userBalances = Model.Where(m => m.Us.UserMail == loggedInUserName).ToList();
+                }
+                @foreach (var item in userBalances)
+                {
+                    if (userBalances.Count > 0)
+                    {
+                        <tr>
+                            <td>
+                                <img src="@item.Us.Foto" alt="Alternate Text" style="height:100px; width:100px; border-radius:5px;" />
+
+                            </td>
+                            <td>
+                                @item.Us.UserName
+                            </td>
+
+                            <td>
+                                @item.Us.UserMail
+                            </td>
+                            <td>
+                                @item.Butce
+                            </td>
+                            <td>
+                                <a class="bi bi-arrow-up btn btn btn-success" href="/BalanceCRT/Inc/@item.Balance_Id"></a>
+                                <a class="bi bi-arrow-down btn btn btn-danger" href="/BalanceCRT/Dec/@item.Balance_Id"></a>
+                                <a class="ri-delete-bin-2-line btn btn btn-secondary" href="/BalanceCRT/Delete/@item.Balance_Id"></a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+        </main>
+    }
+}

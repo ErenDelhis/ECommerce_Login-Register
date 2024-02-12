@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ECommerce_Login_Register.Models.Footer>
+<!-- footer -->
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <div class="footer-item">
+                        <div class="company-brand">
+                            <img src="@item.Logo" class="footer-logo">
+                            <p>
+                                @item.Text
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+            @*@foreach (var item in Model)
+            {
+                <div class="col-md-2">
+                    <div class="footer-menu">
+                        <h5>@item.LinkTitle</h5>
+                        <ul class="menu-list">
+                            <li class="menu-item">
+                                <a href="@item.Link">@item.LinkName</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            }*@
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ECommerce_Login_Register.Models.Quote>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Form Layouts</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/Home/Index">Home</a></li>
+                <li class="breadcrumb-item">Forms</li>
+                <li class="breadcrumb-item active">Layouts</li>
+            </ol>
+        </nav>
+    </div>
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-6">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Quote Edit</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <p>
+        <a class="ri-add-fill btn btn-success" href="/Quotes/Create"> New Client</a>
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Text)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Text)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    <a class="ri-repeat-line btn btn btn-secondary" href="/Quotes/Edit/@item.Id"></a>
+                    <a class="ri-delete-bin-2-line btn btn btn-danger" href="/Quotes/Delete/@item.Id"></a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</main>

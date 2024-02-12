@@ -1,0 +1,23 @@
+﻿@model IEnumerable<ECommerce_Login_Register.Models.Product>
+<section id="popular-books" class="bookshelf py-5 my-5">
+    <div id="book-Filter" class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-12">
+                    <div class="section-header align-center">
+                        <div class="title">
+                            <span>Some quality items</span>
+                        </div>
+                        <h2 class="section-title">Books</h2>
+                    </div>
+                    @{
+                        Html.RenderPartial("Categori");
+                    }
+                    @{
+                        Html.RenderPartial("Cat_Book");
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,17 @@
+﻿@model IEnumerable<ECommerce_Login_Register.Models.Quote>
+
+<!-- Alıntı -->
+<section id="quotation" class="align-center pb-5 mb-5">
+    <div class="inner-content">
+        <h2 class="section-title divider">Günün Alıntısı</h2>
+        @foreach (var item in Model)
+        {
+            <blockquote data-aos="fade-up">
+                <q>
+                    @item.Text
+                </q>
+                <div class="author-name">@item.Author</div>
+            </blockquote>
+        }
+    </div>
+</section>

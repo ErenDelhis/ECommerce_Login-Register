@@ -1,0 +1,191 @@
+﻿@model IEnumerable<ECommerce_Login_Register.Models.User>
+@{
+    ViewBag.Title = "Index";
+    if (Session["id"] != null)
+    {
+        Layout = "~/Views/Shared/Admin_Layout.cshtml";
+
+        <main id="main" class="main">
+            <div class="pagetitle">
+                <h1>Form Layouts</h1>
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/Home/Index">Home</a></li>
+                        <li class="breadcrumb-item">Forms</li>
+                        <li class="breadcrumb-item active">Layouts</li>
+                    </ol>
+                </nav>
+            </div>
+            <section class="section">
+                <div class="row">
+                    <div class="col-lg-6">
+
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">User Edit</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <p>
+                <a class="ri-add-fill btn btn-success" href="/UserCRT/Create"> New User</a>
+            </p>
+            <!-- Table with stripped rows -->
+            <table class="table table-hover datatable">
+                <tr>
+                    <th>
+                        <p>
+                            Id:
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            Foto:
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            Name:
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            PassWord:
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            Mail:
+                        </p>
+                    </th>
+                    <th></th>
+                </tr>
+
+
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+
+                        <td>
+                            @item.UserId
+                        </td>
+                        <td>
+                            <img src="@item.Foto" alt="Alternate Text" style="height:100px; width:100px; border-radius:5px;" />
+                        </td>
+                        <td>
+                            @item.UserName
+                        </td>
+                        <td>
+                            @item.Password
+                        </td>
+                        <td>
+                            @item.UserMail
+                        </td>
+
+
+                        <td>
+                            <a class="ri-repeat-line btn btn btn-secondary" href="/UserCRT/Edit/@item.UserId"></a>
+                            <a class="ri-delete-bin-2-line btn btn btn-danger" href="/UserCRT/Delete/@item.UserId"></a>
+                        </td>
+
+                    </tr>
+                }
+
+
+            </table>
+
+
+        </main>
+    }
+    if (Session["id"] == null)
+    {
+        Layout = "~/Views/Shared/User_Layout.cshtml";
+        <main id="main" class="main">
+            <div class="pagetitle">
+                <h1>Form Layouts</h1>
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/Home/Index">Home</a></li>
+                        <li class="breadcrumb-item">Forms</li>
+                        <li class="breadcrumb-item active">Layouts</li>
+                    </ol>
+                </nav>
+            </div>
+            <section class="section">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">User Index</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <table class="table table-hover">
+                <tr>
+             
+                    <th>
+                        <p>
+                            Foto
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            Name
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            PassWord
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            Mail
+                        </p>
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                @{
+                    // Kullanıcı sadece kendisini gorsün
+                    string loggedInUserName = Session["UserMails"]?.ToString();
+                    var userBalances = Model.Where(m => m.UserMail == loggedInUserName).ToList();
+                }
+
+                @foreach (var item in userBalances)
+                {
+                    if (userBalances.Count > 0)
+                    {
+                        <tr>
+                            <td>
+                                <img src="@item.Foto" alt="Alternate Text " style="height:100px; width:100px; border-radius:5px;" />
+                            </td>
+                            <td>
+                                @item.UserName
+                            </td>
+                            <td>
+                                @item.Password
+                            </td>
+                            <td>
+                                @item.UserMail
+                            </td>
+                            <td>
+                                <a class="ri-repeat-line btn btn btn-secondary" href="/UserCRT/Edit/@item.UserId"></a>
+                                <a class="ri-delete-bin-2-line btn btn btn-danger" href="/UserCRT/Delete/@item.UserId"></a>
+                            </td>
+                            <td>
+                                <a class="bi bi-arrow-right btn btn btn-success" href="/BalanceCRT/Index/@item.UserId"> Show Balance</a>
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </table>
+        </main>
+
+    }
+}

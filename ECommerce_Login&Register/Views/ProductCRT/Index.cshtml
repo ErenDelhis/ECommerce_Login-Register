@@ -1,0 +1,111 @@
+﻿@model IEnumerable<ECommerce_Login_Register.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Form Layouts</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/Home/Index">Home</a></li>
+                <li class="breadcrumb-item">Forms</li>
+                <li class="breadcrumb-item active">Layouts</li>
+            </ol>
+        </nav>
+    </div>
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Genre of books : business, technology, romantic, adventure, fictional.
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <p>
+        <a class="ri-add-fill btn btn-success" href="/ProductCRT/Create"> New Product</a>
+    </p>
+    <table class="table table-hover datatable">
+        <tr>
+            <th>
+                <p>
+                    Id:
+                </p>
+            </th>
+            <th>
+                <p>
+                    Cat Id:
+                </p>
+            </th>
+            <th>
+                <p>
+                    Türü:
+                </p>
+            </th>
+            <th>
+                <p>
+                    Foto:
+                </p>
+            </th>
+            <th>
+                <p>
+                    Book Name:
+                </p>
+            </th>
+            <th>
+                <p>
+                    Author:
+                </p>
+            </th>
+
+            <th>
+                <p>
+                    Price:
+                </p>
+            </th>
+            <th></th>
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.BookId
+                </td>
+                <td>
+                    @item.Cat.Tur
+                </td>
+                <td>
+                    <img src="@item.Foto" alt="Alternate Text" style="height:100px; width:100px; border-radius:5px;" />
+                </td>
+                <td>
+                    @item.BookName
+                </td>
+                <td>
+                    @item.BookAuthor
+                </td>
+
+                <td>
+                    @item.BookPrice
+                </td>
+                <td>
+                    <a class="ri-repeat-line btn btn btn-secondary" href="/ProductCRT/Edit/@item.BookId"></a>
+                    <a class="ri-delete-bin-2-line btn btn btn-danger" href="/ProductCRT/Delete/@item.BookId"></a>
+                </td>
+            </tr>
+        }
+
+
+    </table>
+
+
+
+</main>

@@ -1,0 +1,100 @@
+﻿@model IEnumerable<ECommerce_Login_Register.Models.Admin>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Form Layouts</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/Home/Index">Home</a></li>
+                <li class="breadcrumb-item">Forms</li>
+                <li class="breadcrumb-item active">Layouts</li>
+            </ol>
+        </nav>
+    </div>
+    <p>
+        <a class="ri-add-fill btn btn-success" href="/AdminCRT/Create"> New Admin</a>
+    </p>
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Admin Index</h5>
+
+                        <!-- Table with stripped rows -->
+                        <table class="table table-hover datatable">
+                            <tr>
+                                <th>
+                                    <p>
+                                        Id:
+                                    </p>
+                                </th>
+                                <th>
+                                    <p>
+                                        Foto:
+                                    </p>
+                                </th>
+                                <th>
+                                    <p>
+                                        Name:
+                                    </p>
+                                </th>
+                                <th>
+                                    <p>
+                                        Mail:
+                                    </p>
+                                </th>
+                                <th>
+                                    <p>
+                                        Role:
+                                    </p>
+                                </th>
+                                <th></th>
+                            </tr>
+
+
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+
+                                    <td>
+                                        @item.Id
+                                    </td>
+                                    <td>
+                                        <img src="@item.Foto" alt="Alternate Text" style="height:100px; width:100px; border-radius:5px;" />
+                                    </td>
+                                    <td>
+                                        @item.AdminName
+                                    </td>
+                                    <td>
+                                        @item.Mail
+                                    </td>
+
+                                    <td>
+                                        @item.Role
+                                    </td>
+
+
+                                    <td>
+                                        <a class="ri-repeat-line btn btn btn-secondary" href="/AdminCRT/Edit/@item.Id"></a>
+                                        <a class="ri-delete-bin-2-line btn btn btn-danger" href="/AdminCRT/Delete/@item.Id"></a>
+                                    </td>
+
+                                </tr>
+                            }
+
+
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>

@@ -1,0 +1,28 @@
+﻿@model IEnumerable<ECommerce_Login_Register.Models.Product>
+<div class="tab-content">
+    <div id="technology" data-tab-content>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3">
+                    <div class="product-item">
+                        <figure class="product-style">
+                            <img src="@item.Foto" alt="Books" class="product-item">
+                            <button class="add-to-cart" data-product-id="@item.BookId" data-product-name="@item.BookName" data-product-price="@item.BookPrice">
+                                Sepete Ekle
+                            </button>
+                        </figure>
+                        <figcaption>
+                            <h3>@item.BookName</h3>
+                            <span>@item.BookAuthor</span><br />
+                            <span>@item.Cat.Tur</span>
+                            <div class="item-price">$ @item.BookPrice</div>
+                        </figcaption>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

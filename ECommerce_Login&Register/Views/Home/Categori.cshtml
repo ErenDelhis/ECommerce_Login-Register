@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ECommerce_Login_Register.Models.Product>
+<ul class="tabs">
+    <li>
+        <button onclick="filterBooksByCategory(null)">All</button>
+    </li>
+    <li>
+        <button onclick="filterBooksByCategory(2)">Business</button>
+    </li>
+    <li>
+        <button onclick="filterBooksByCategory(3)">Technology</button>
+    </li>
+    <li>
+        <button onclick="filterBooksByCategory(4)">Romantic</button>
+    </li>
+    <li>
+        <button onclick="filterBooksByCategory(5)">Adventure</button>
+    </li>
+    <li>
+        <button onclick="filterBooksByCategory(6)">Fictional</button>
+    </li>
+</ul>
+
+<script>
+    function filterBooksByCategory(categoryId) {
+        $.ajax({
+            url: "/Home/Book",
+            data: { categoryId: categoryId },
+            success: function (result) {
+                // Sadece filtrelenen kitapları göster
+                $("#book-Filter").html(result);
+                // Book bölümünü göster
+                $("#popular-books").show();
+            },
+            error: function (error) {
+                console.log("Error: " + error);
+            }
+        });
+    }
+</script>
+

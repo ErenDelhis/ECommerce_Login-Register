@@ -1,0 +1,102 @@
+﻿@model IEnumerable<ECommerce_Login_Register.Models.Footer>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Form Layouts</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/Home/Index">Home</a></li>
+                <li class="breadcrumb-item">Forms</li>
+                <li class="breadcrumb-item active">Layouts</li>
+            </ol>
+        </nav>
+    </div>
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-6">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Footer Index</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <p>
+        <a class="ri-add-fill btn btn-success" href="/Footers/Create"> New Text & Logo</a>
+
+    </p>
+    <p>
+        <a class="ri-add-fill btn btn-success" href="/Footers/LinkCreate"> New Links</a>
+    </p>
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Logo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Text)
+            </th>
+          
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="@item.Logo" style="height:100px; width:100px; border-radius:5px;" />
+                </td>
+                <td>
+                    @item.Text
+                </td>
+                <td>
+                    <a class="ri-repeat-line btn btn btn-secondary" href="/Footers/Edit/@item.Id"></a>
+                    <a class="ri-delete-bin-2-line btn btn btn-danger" href="/Footers/Delete/@item.Id"></a>
+
+                </td>
+
+            </tr>
+        }
+       
+
+    </table>
+
+    @*<table class="table table-hover">
+        <tr>
+            <th>
+                Link Başlığı
+            </th>
+            <th>
+                Link Adı
+            </th>
+            <th>
+                Link 
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.LinkTitle
+                </td>
+                <td>
+                    @item.LinkName
+                </td>
+                <td>
+                    @item.Link
+                </td>
+                <td>
+                    <a class="ri-repeat-line btn btn btn-dark" href="/Footers/LinkEdit/@item.Id"></a>
+                </td>
+            </tr>
+
+        }
+    </table>*@
+</main>
+

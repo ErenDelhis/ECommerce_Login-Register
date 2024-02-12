@@ -1,0 +1,213 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="~/Content/Booksaw/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/Booksaw/icomoon/icomoon.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/Booksaw/css/vendor.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/Booksaw/style.css">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+
+
+<body data-bs-spy="scroll" data-bs-target="#header" tabindex="0" data-logged-in="@Convert.ToString(Session["Userid"] != null)">
+    <!-- Header -->
+    <div id="header-wrap">
+
+        <!--<div class="top-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="right-element">
+                            <div class="col-md-6">
+                                <div class="social-links">
+                                    <div class="col-md-2">
+                                        <div class="main-logo">
+                                            <a href="/Home/Index">
+                                                <img src="~/Content/Booksaw/images/main-logo.png" />
+                                            </a>
+
+                                            <ul>
+                                                <li>
+                                                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="icon icon-twitter"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="icon icon-youtube-play"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="icon icon-behance-square"></i></a>
+                                                </li>
+                                            </ul>
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                          </div>
+                        </div
+                    </div>
+
+                </div>
+            </div>
+        </div> -->
+        <header id="header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="social-links">
+                            <div class="col-md-2">
+
+                                @*<ul>
+                                        <li>
+                                            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icon icon-twitter"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icon icon-youtube-play"></i></a>
+                                        </li>
+                                        <li>
+                                            <a  href="#"><i class="icon icon-behance-square"></i></a>
+                                        </li>
+                                    </ul>*@
+                            </div>
+
+                        </div><!--social-links-->
+                    </div>
+                    <div class="col-md-10">
+                        <nav id="navbar">
+                            <div class="main-menu stellarnav">
+                                <ul class="menu-list">
+
+                                    <li class="menu-item active"><a href="#billboard">Home</a></li>
+                                    @*<li class="menu-item has-sub">
+                                            <a href="#pages" class="nav-link">Pages</a>
+                                            <ul>
+                                                <li class="active"><a href="#billboard">Home</a></li>
+                                                <li><a href="#quotation">Quote</a></li>
+                                                <li><a href="#">Thank You</a></li>
+                                            </ul>
+                                        </li>*@
+                                    <li class="menu-item"><a href="#popular-books" class="nav-link">Books</a></li>
+                                    <li class="menu-item"><a href="#quotation" class="nav-link">Quote</a></li>
+                                    <li>
+                                        <a type="button" class="nav-link menu-item" id="cart-toggle-btn">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>Sepetim</span>
+                                        </a>
+
+                                    </li>
+                                    <li class="dropdown">
+                                        @if (Session["Userid"] != null)
+                                        {
+
+                                            <a class="user-account for-buy dropdown-toggle text-decoration-none text-dark" type="button" id="dropdownMenuLink" aria-expanded="false">
+                                                @Session["Usernames"]
+                                            </a>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <li><a class="dropdown-item" href="/UserCRT/Index">Profil</a></li>
+                                                <li><a class="dropdown-item" href="/UserCRT/Edit/@Session["Userid"]">Hesap Ayarları</a></li>
+                                                <li><a class="dropdown-item" href="/BalanceCRT/Inc/@Session["Userid"]">Para Yatır</a></li>
+                                                <li>
+                                                    <a type="button" id="checkBalanceBtn" class="dropdown-item">Bakiyem</a>
+                                                </li>
+                                                <li><hr class="dropdown-divider"></li>
+                                                <li><a class="dropdown-item" href="/UserCRT/Logout">Çıkış Yap</a></li>
+                                            </ul>
+                                        }
+                                        else
+                                        {
+                                            <a class="user-account for-buy dropdown-toggle text-decoration-none text-dark" type="button" id="dropdownMenuLink" aria-expanded="false">
+                                                Hesap
+                                            </a>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <li><a class="dropdown-item" href="/Home/IndexLogin">giriş Yap</a></li>
+
+
+                                            </ul>
+                                        }
+                                    </li>
+
+
+
+                                    @* <li class="menu-item"><a href="https://templatesjungle.gumroad.com/l/booksaw-free-html-bookstore-template" class="nav-link btn btn-outline-dark rounded-pill m-0" target="_blank">Get PRO</a></li>*@
+
+                                </ul>
+                                <!-- Sepet paneli -->
+                                <div class="cart-panel" id="cart-panel">
+                                    <div class="cart-header">
+                                        <h4 class="cart-title">Sepetiniz</h4>
+                                        <button type="button" class="btn-close" aria-label="Close" id="cart-close-btn"></button>
+                                    </div>
+                                    <ul class="list-group" id="cart-items-list">
+                                        <li class="list-group-item empty-cart">Hadi biraz alış-veriş yapalım.</li>
+                                    </ul>
+                                    <div class="cart-footer">
+                                        <span class="cart-total">Toplam: $0.00</span>
+                                    </div>
+                                    <button type="button" class="btn btn-danger" id="clear-cart-btn">Sepeti Temizle</button>
+                                    <button type="button" class="btn btn-success" id="accept-btn">Sepeti Onayla</button>
+
+
+                                </div>
+                                <div class="hamburger">
+                                    <span class="bar"></span>
+                                    <span class="bar"></span>
+                                    <span class="bar"></span>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div><!--header-wrap-->
+    @RenderBody()
+
+
+    @{
+        Html.RenderAction("Footer");
+    }
+
+
+
+    @* sepet ile ilgili şeyler uzantısı *@
+    <script src="~/Scripts/Script.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+            crossorigin="anonymous">
+    </script>
+    <script src="~/Content/Booksaw/js/plugins.js"></script>
+    <script src="~/Content/Booksaw/js/slideNav.js"></script>
+    <script src="~/Content/Booksaw/js/slideNav.min.js"></script>
+    <script src="~/Content/Booksaw/js/plugins.js"></script>
+    <script src="~/Content/Booksaw/js/modernizr.js"></script>
+    <script src="~/Content/Booksaw/js/script.js"></script>
+
+</body>
+
+</html>

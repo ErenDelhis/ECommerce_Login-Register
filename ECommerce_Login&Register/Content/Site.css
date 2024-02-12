@@ -1,0 +1,4 @@
+﻿/* Sepet paneli içindeki numericupdown inputlarının genişliğini düşür */
+.cart-item-quantity {
+    width: 50px; /* İstediğiniz genişliği buradan ayarlayabilirsiniz */
+}
